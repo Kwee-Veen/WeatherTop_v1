@@ -1,0 +1,24 @@
+<table class="table is-hoverable">
+  <thead>
+  <tr>
+    <th>Code</th>
+    <th>Temperature</th>
+    <th>Wind Speed</th>
+  </tr>
+  </thead>
+  <tbody>
+  #{list items:_station.readings, as:'reading'}
+  <tr>
+    <td>
+      ${reading.code}
+    </td>
+    <td>
+      ${reading.temperature}
+    </td>
+    <td>
+      ${reading.windSpeed}
+    </td>
+  </tr>
+  #{/list}
+  </tbody>
+</table>

@@ -1,0 +1,47 @@
+Reading(s1):
+  code: Alpha
+  temperature: 0.5
+  windSpeed: 10.0
+Reading(s2):
+  code: Beta
+  temperature: 1.0
+  windSpeed: 9.0
+Reading(s3):
+  code: Gamma
+  temperature: 1.5
+  windSpeed: 8.0
+Reading(s4):
+  code: Delta
+  temperature: 2.0
+  windSpeed: 7.0
+Reading(s5):
+  code: Epsilon
+  temperature: 2.5
+  windSpeed: 6.0
+Reading(s6):
+  code: Zeta
+  temperature: 3.0
+  windSpeed: 5.0
+Reading(s7):
+    code: Eta
+    temperature: 3.5
+    windSpeed: 5.5
+
+Station(p1):
+  name: Timbuktu
+  readings:
+  - s1
+  - s2
+
+Station(p2):
+  name: Delhi
+  readings:
+  - s3
+  - s4
+
+Station(p3):
+  name: Honolulu
+  readings:
+    - s5
+    - s6
+    - s7
