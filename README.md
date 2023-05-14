@@ -1,6 +1,6 @@
 # play-template-1
 
-This is the starter version of the 'Weathertop' assignment, as written by Caoimhín Arnott, 20104296.  
+This is the baseline version of the 'Weathertop' assignment, as written by Caoimhín Arnott, 20104296.  
 
 This app uses a refactored version of the Web Development module lab 9a solution, itself based upon the Play framework, from the below course:
 

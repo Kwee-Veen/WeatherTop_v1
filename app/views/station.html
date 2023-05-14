@@ -1,0 +1,59 @@
+#{extends 'main.html' /}
+#{set title:'Station' /}
+
+#{menu id:"station"/}
+
+<div class="content box">
+    <h1 class = "title">
+        ${station.name}
+    </h1>
+    <div class="columns">
+        <div class="column">
+            <div class="box has-background-black has-text-white">
+                <h4 class="has-text-white">
+                    ${station.name}
+                </h4>
+            </div>
+        </div>
+        <div class="column">
+            <div class="box has-background-black has-text-white">
+                <h4 class="has-text-white">
+                    Weather
+                </h4>
+                ${latestWeather}
+            </div>
+        </div>
+        <div class="column">
+            <div class="box has-background-black has-text-white">
+                <h4 class="has-text-white">
+                    Temperature
+                </h4>
+                ${station.latestReading.temperature} °C <br>
+                ${station.latestTemperatureFahrenheit} °F
+            </div>
+        </div>
+        <div class="column">
+            <div class="box has-background-black has-text-white">
+                <h4 class="has-text-white">
+                    Wind
+                </h4>
+                ${station.latestWindSpeedBeaufort} Bft
+            </div>
+        </div>
+        <div class="column">
+            <div class="box has-background-black has-text-white">
+                <h4 class="has-text-white">
+                    Pressure
+                </h4>
+                ${station.latestReading.pressure} hPa
+            </div>
+        </div>
+    </div>
+    #{listreadings station:station /}
+</div>
+
+<style>
+    .box {
+        height: 100%
+    }
+</style>
