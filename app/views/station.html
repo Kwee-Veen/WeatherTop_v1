@@ -10,45 +10,101 @@
     <div class="columns">
         <div class="column">
             <div class="box has-background-black has-text-white">
-                <h4 class="has-text-white">
-                    ${station.name}
-                </h4>
+                <div class="columns">
+                    <div class="column">
+                        <h4 class="has-text-white">
+                            ${station.name} <br>
+                        </h4>
+                    </div>
+                    <div class="column is-narrow">
+                        <span class="icon">
+                            <i class="fa-solid fa-location-crosshairs"></i>
+                        </span>
+                    </div>
+                </div>
+                <p>
+                    ${station.latitude}° N<br>
+                    ${station.longitude}° W
+                </p>
             </div>
         </div>
         <div class="column">
             <div class="box has-background-black has-text-white">
-                <h4 class="has-text-white">
-                    Weather
-                </h4>
+                <div class="columns">
+                    <div class="column">
+                        <h4 class="has-text-white">
+                            Weather
+                        </h4>
+                    </div>
+                    <div class="column is-narrow">
+                        <span class="icon">
+                            <i class='${station.latestReading.latestWeatherIcon}'></i>
+                        </span>
+                    </div>
+                </div>
+                <p>
                 ${station.latestReading.latestWeather}
+                </p>
             </div>
         </div>
         <div class="column">
             <div class="box has-background-black has-text-white">
-                <h4 class="has-text-white">
-                    Temperature
-                </h4>
-                ${station.latestReading.temperature} °C <br>
-                ${station.latestTemperatureFahrenheit} °F
+                <div class="columns">
+                    <div class="column">
+                        <h4 class="has-text-white">
+                            Temperature
+                        </h4>
+                    </div>
+                    <div class="column is-narrow">
+                        <span class="icon">
+                            <i class="fa-solid fa-temperature-low"></i>
+                        </span>
+                    </div>
+                </div>
+                Now: ${station.latestReading.temperature}°C (${station.latestTemperatureFahrenheit}°F)<br>
+                Max: ${station.maxTemp}°C<br>
+                Min: ${station.minTemp}°C
             </div>
         </div>
         <div class="column">
             <div class="box has-background-black has-text-white">
-                <h4 class="has-text-white">
-                    Wind
-                </h4>
-                ${station.latestWindSpeedBeaufort} Bft
-                ${station.latestWindDirectionString} <br>
-                Feels like:<br>
-                ${station.latestWindChill} °C
+                <div class="columns">
+                    <div class="column">
+                        <h4 class="has-text-white">
+                            Wind
+                        </h4>
+                    </div>
+                    <div class="column is-narrow">
+                        <span class="icon">
+                            <i class="fa-solid fa-wind"></i>
+                        </span>
+                    </div>
+                </div>
+                ${station.latestWindSpeedBeaufort} Bft, Blowing ${station.latestWindDirectionString} <br>
+                Max: ${station.maxWindSpeed} km/h <br>
+                Min: ${station.minWindSpeed} km/h <br>
+                Feels like: ${station.latestWindChill} °C
             </div>
         </div>
         <div class="column">
             <div class="box has-background-black has-text-white">
-                <h4 class="has-text-white">
-                    Pressure
-                </h4>
-                ${station.latestReading.pressure} hPa
+                <div class="columns">
+                    <div class="column">
+                        <h4 class="has-text-white">
+                            Pressure
+                        </h4>
+                    </div>
+                    <div class="column is-narrow">
+                        <span class="icon">
+                            <i class="fa-solid fa-weight-scale"></i>
+                        </span>
+                    </div>
+                </div>
+                <p>
+                Now: ${station.latestReading.pressure} hPa <br>
+                Max: ${station.maxPressure} hPa <br>
+                Min: ${station.minPressure} hPa
+                </p>
             </div>
         </div>
     </div>
@@ -58,6 +114,13 @@
 
 <style>
     .box {
-        height: 100%
+        height: 100%;
+        border-radius: 25px;
+    }
+    .icon {
+        scale: 225%;
+        background-color: white;
+        color: indigo;
+        border-radius: 8px;
     }
 </style>

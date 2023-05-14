@@ -1,78 +1,80 @@
 Reading(r1):
   code: 200
   temperature: 41
-  windSpeed: 10
+  windSpeed: 10.56
   windDirection: 10
   pressure: 1002.0
 Reading(r2):
   code: 300
   temperature: 29
-  windSpeed: 9
+  windSpeed: 9.22
   windDirection: 20
   pressure: 1004.0
 Reading(r3):
   code: 200
   temperature: 43
-  windSpeed: 8
+  windSpeed: 8.98
   windDirection: 25
   pressure: 1006.0
 Reading(r4):
   code: 400
   temperature: 25.0
-  windSpeed: 8
+  windSpeed: 8.12
   windDirection: 142
   pressure: 1000.0
 Reading(r5):
   code: 600
   temperature: 21.0
-  windSpeed: 10
+  windSpeed: 10.54
   windDirection: 136
   pressure: 998.0
 Reading(r6):
   code: 500
   temperature: 26.0
-  windSpeed: 11
+  windSpeed: 11.03
   windDirection: 128
   pressure: 1004.0
 Reading(r7):
     code: 100
     temperature: -96.9
-    windSpeed: 1
+    windSpeed: 1.45
     windDirection: 255
-    pressure: 0.852
+    pressure: 0.85
 Reading(r8):
   code: 900
   temperature: -9.1
-  windSpeed: 2
+  windSpeed: 2.38
   windDirection: 260
-  pressure: 0.851
+  pressure: 0.85
 Reading(r9):
   code: 900
   temperature: -21
-  windSpeed: 6
+  windSpeed: 6.79
   windDirection: 255
-  pressure: 0.847
+  pressure: 0.84
 Reading(r10):
   code: 100
   temperature: -82
-  windSpeed: 11
+  windSpeed: 11.25
   windDirection: 110
-  pressure: 0.851
+  pressure: 0.84
 Reading(r11):
   code: 900
   temperature: -26
-  windSpeed: 16
+  windSpeed: 16.47
   windDirection: 105
-  pressure: 0.852
+  pressure: 0.85
 Reading(r12):
   code: 1000
   temperature: -80
-  windSpeed: 57
+  windSpeed: 57.11
   windDirection: 100
-  pressure: 0.851
+  pressure: 0.84
 
 Station(s1):
   name: Timbuktu
+  latitude: 16.7666
+  longitude: 3.0026
   readings:
   - r1
   - r2
@@ -80,6 +82,8 @@ Station(s1):
 
 Station(s2):
   name: Delhi
+  latitude: 28.7041
+  longitude: 77.1025
   readings:
   - r4
   - r5
@@ -87,6 +91,8 @@ Station(s2):
 
 Station(s3):
   name: Elysium Planitia
+  latitude: 3.00
+  longitude: 154.70
   readings:
     - r7
     - r8
@@ -94,7 +100,20 @@ Station(s3):
 
 Station(s4):
   name: Gale Crater
+  latitude: 4.59
+  longitude: 137.44
   readings:
     - r10
     - r11
     - r12
+
+Member(m1):
+  firstname: John
+  surname: Smith
+  email: test@test.com
+  password: test
+  stations:
+    - s1
+    - s2
+    - s3
+    - s4

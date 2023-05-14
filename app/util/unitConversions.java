@@ -1,11 +1,10 @@
 package util;
 
 public class unitConversions {
-  public static double celsiustoFahrenheit(double celsius) {
-    return Math.round(((((celsius * 9) / 5) + 32) * 10) / 10);
+  public static double celsiusToFahrenheit(double celsius) {
+    return rounder((((celsius * 9) / 5) + 32));
   }
-
-  public static int windSpeedToBeaufort(int windSpeed) {
+  public static int windSpeedToBeaufort(double windSpeed) {
     int beaufort = 0;
     if (windSpeed < 1) {
       beaufort = 0;
@@ -33,5 +32,9 @@ public class unitConversions {
       beaufort = 11;
     }
     return beaufort;
+  }
+  public static double rounder(double input) {
+    double longValue = (double)Math.round(input*100);
+    return longValue / 100;
   }
 }

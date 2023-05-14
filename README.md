@@ -1,6 +1,6 @@
-# play-template-1
+# weatherTop version 4
 
-This is the Release 1 (i.e., version 3) version of the 'Weathertop' assignment, as written by Caoimhín Arnott, 20104296.  
+This is the Release 2 version of the 'Weathertop' assignment, as written by Caoimhín Arnott, 20104296.  
 
 The initial template for this web app came from the Web Development module lab 9a solution from the university course:
 

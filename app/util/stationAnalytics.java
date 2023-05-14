@@ -1,6 +1,7 @@
 package util;
 
 import models.Reading;
+import models.Station;
 
 import java.util.List;
 
@@ -13,30 +14,54 @@ public class stationAnalytics {
     return latestReading;
   }
 
-  public static String getWeather(int weatherCode) {
-    switch (weatherCode) {
+  public static void getWeather(long id) {
+    Reading reading = Reading.findById(id);
+    int code = reading.code;
+    switch (code) {
       case 100:
-        return "Clear";
+        reading.latestWeather = "Clear";
+        reading.latestWeatherIcon = "fa-solid fa-sun-bright";
+        break;
       case 200:
-        return "Partial Clouds";
+        reading.latestWeather = "Partial Clouds";
+        reading.latestWeatherIcon = "fa-solid fa-cloud-sun";
+        break;
       case 300:
-        return "Cloudy";
+        reading.latestWeather = "Cloudy";
+        reading.latestWeatherIcon = "fa-solid fa-clouds";
+        break;
       case 400:
-        return "Light Showers";
+        reading.latestWeather = "Light Rain";
+        reading.latestWeatherIcon = "fa-solid fa-cloud-sun-rain";
+        break;
       case 500:
-        return "Heavy Showers";
+        reading.latestWeather = "Heavy Shower";
+        reading.latestWeatherIcon = "fa-solid fa-cloud-showers-heavy";
+        break;
       case 600:
-        return "Rain";
+        reading.latestWeather = "Rain";
+        reading.latestWeatherIcon = "fa-solid fa-cloud-rain";
+        break;
       case 700:
-        return "Snow";
+        reading.latestWeather = "Snow";
+        reading.latestWeatherIcon = "fa-solid fa-cloud-snow";
+        break;
       case 800:
-        return "Thunder";
+        reading.latestWeather = "Thunder";
+        reading.latestWeatherIcon = "fa-solid fa-cloud-bolt";
+        break;
       case 900:
-        return "Martian Cloud";
+        reading.latestWeather = "Martian Cloud";
+        reading.latestWeatherIcon = "fa-solid fa-cloud-moon";
+        break;
       case 1000:
-        return "Martian Dust Storm";
+        reading.latestWeather = "Martian Dust Storm";
+        reading.latestWeatherIcon = "fa-solid fa-tornado";
+        break;
       default:
-        return "<No Weather Data Found>";
+        reading.latestWeather = "No Weather Data";
+        reading.latestWeatherIcon = "fa-solid fa-binary-slash";
+        break;
     }
   }
   public static String getWindDirection(double windDirectionDegrees) {
@@ -76,8 +101,25 @@ public class stationAnalytics {
     }
     return windDirection;
   }
-
-  public static double getWindChill(double temperature, int windSpeed) {
-    return Math.round(((13.12 + (0.6215*temperature) - (11.37*Math.pow(windSpeed, 0.16)) + (0.3965*temperature*(Math.pow(windSpeed, 0.16)))) * 10) / 10);
+  public static double getWindChill(double temperature, double windSpeed) {
+    return util.unitConversions.rounder((13.12 + (0.6215*temperature) - (11.37*Math.pow(windSpeed, 0.16)) + (0.3965*temperature*(Math.pow(windSpeed, 0.16)))));
+  }
+  public static void setMinMaxValues(long id) {
+    Station station = Station.findById(id);
+    Reading firstReading = station.readings.get(0);
+    station.maxTemp = firstReading.temperature;
+    station.minTemp = firstReading.temperature;
+    station.maxWindSpeed = firstReading.windSpeed;
+    station.minWindSpeed = firstReading.windSpeed;
+    station.maxPressure = firstReading.pressure;
+    station.minPressure = firstReading.pressure;
+    for (Reading reading : station.readings) {
+      if (reading.temperature > station.maxTemp) station.maxTemp = reading.temperature;
+      if (reading.temperature < station.minTemp) station.minTemp = reading.temperature;
+      if (reading.windSpeed > station.maxWindSpeed) station.maxWindSpeed = reading.windSpeed;
+      if (reading.windSpeed < station.minWindSpeed) station.minWindSpeed = reading.windSpeed;
+      if (reading.pressure > station.maxPressure) station.maxPressure = reading.pressure;
+      if (reading.pressure < station.minPressure) station.minPressure = reading.pressure;
+    }
   }
 }
