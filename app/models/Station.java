@@ -11,8 +11,11 @@ import play.db.jpa.Model;
 public class Station extends Model
 {
     public String name;
-    public double latestTemperatureFahrenheit;
-    public int latestWindSpeedBeaufort;
+    public double latestTemperatureFahrenheit = 0;
+    public int latestWindSpeedBeaufort = 0;
+
+    public String latestWindDirectionString ="";
+    public double latestWindChill = 0;
 
     @OneToMany(cascade = CascadeType.ALL)
     public List<Reading> readings = new ArrayList<Reading>();

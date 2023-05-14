@@ -1,88 +1,100 @@
-Reading(s1):
+Reading(r1):
   code: 200
   temperature: 41
   windSpeed: 10
+  windDirection: 10
   pressure: 1002.0
-Reading(s2):
+Reading(r2):
   code: 300
   temperature: 29
   windSpeed: 9
+  windDirection: 20
   pressure: 1004.0
-Reading(s3):
+Reading(r3):
   code: 200
   temperature: 43
   windSpeed: 8
+  windDirection: 25
   pressure: 1006.0
-Reading(s4):
+Reading(r4):
   code: 400
   temperature: 25.0
   windSpeed: 8
+  windDirection: 142
   pressure: 1000.0
-Reading(s5):
+Reading(r5):
   code: 600
   temperature: 21.0
   windSpeed: 10
+  windDirection: 136
   pressure: 998.0
-Reading(s6):
+Reading(r6):
   code: 500
   temperature: 26.0
   windSpeed: 11
+  windDirection: 128
   pressure: 1004.0
-Reading(s7):
+Reading(r7):
     code: 100
     temperature: -96.9
     windSpeed: 1
+    windDirection: 255
     pressure: 0.852
-Reading(s8):
+Reading(r8):
   code: 900
   temperature: -9.1
   windSpeed: 2
+  windDirection: 260
   pressure: 0.851
-Reading(s9):
+Reading(r9):
   code: 900
   temperature: -21
   windSpeed: 6
+  windDirection: 255
   pressure: 0.847
-Reading(s10):
+Reading(r10):
   code: 100
   temperature: -82
   windSpeed: 11
+  windDirection: 110
   pressure: 0.851
-Reading(s11):
+Reading(r11):
   code: 900
   temperature: -26
   windSpeed: 16
+  windDirection: 105
   pressure: 0.852
-Reading(s12):
+Reading(r12):
   code: 1000
   temperature: -80
   windSpeed: 57
+  windDirection: 100
   pressure: 0.851
 
-Station(p1):
+Station(s1):
   name: Timbuktu
   readings:
-  - s1
-  - s2
-  - s3
+  - r1
+  - r2
+  - r3
 
-Station(p2):
+Station(s2):
   name: Delhi
   readings:
-  - s4
-  - s5
-  - s6
+  - r4
+  - r5
+  - r6
 
-Station(p3):
+Station(s3):
   name: Elysium Planitia
   readings:
-    - s7
-    - s8
-    - s9
+    - r7
+    - r8
+    - r9
 
-Station(p4):
+Station(s4):
   name: Gale Crater
   readings:
-    - s10
-    - s11
-    - s12
+    - r10
+    - r11
+    - r12

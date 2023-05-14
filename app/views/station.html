@@ -20,7 +20,7 @@
                 <h4 class="has-text-white">
                     Weather
                 </h4>
-                ${latestWeather}
+                ${station.latestReading.latestWeather}
             </div>
         </div>
         <div class="column">
@@ -38,6 +38,9 @@
                     Wind
                 </h4>
                 ${station.latestWindSpeedBeaufort} Bft
+                ${station.latestWindDirectionString} <br>
+                Feels like:<br>
+                ${station.latestWindChill} °C
             </div>
         </div>
         <div class="column">
@@ -51,6 +54,7 @@
     </div>
     #{listreadings station:station /}
 </div>
+#{addreading station:station /}
 
 <style>
     .box {

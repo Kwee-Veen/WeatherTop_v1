@@ -5,8 +5,10 @@
 # Home page
 GET     /                                       Start.index
 GET     /dashboard                              Dashboard.index
+POST    /dashboard/addstation                   Dashboard.addStation
 GET     /about                                  About.index
 GET     /station/{id}                           StationController.index
+POST    /stations/{id}/addreading               StationController.addReading
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
