@@ -9,6 +9,7 @@ POST    /dashboard/addstation                   Dashboard.addStation
 GET     /about                                  About.index
 GET     /station/{id}                           StationController.index
 POST    /stations/{id}/addreading               StationController.addReading
+GET     /station/{id}/deletereading/{readingid} StationController.deleteReading
 GET     /signup                                 Accounts.signup
 GET     /login                                  Accounts.login
 POST    /register                               Accounts.register

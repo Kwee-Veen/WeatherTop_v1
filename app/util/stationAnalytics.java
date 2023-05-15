@@ -7,9 +7,9 @@ import java.util.List;
 
 public class stationAnalytics {
   public static Reading getLatestReading(List<Reading> inputReading) {
-      Reading latestReading = inputReading.get(0);
-      for (Reading reading : inputReading) {
-        latestReading = reading;
+    Reading latestReading = inputReading.get(0);
+    for (Reading reading : inputReading) {
+      latestReading = reading;
     }
     return latestReading;
   }
@@ -20,7 +20,7 @@ public class stationAnalytics {
     switch (code) {
       case 100:
         reading.latestWeather = "Clear";
-        reading.latestWeatherIcon = "fa-solid fa-sun-bright";
+        reading.latestWeatherIcon = "fa-solid fa-sun";
         break;
       case 200:
         reading.latestWeather = "Partial Clouds";
@@ -28,7 +28,7 @@ public class stationAnalytics {
         break;
       case 300:
         reading.latestWeather = "Cloudy";
-        reading.latestWeatherIcon = "fa-solid fa-clouds";
+        reading.latestWeatherIcon = "fa-solid fa-cloud";
         break;
       case 400:
         reading.latestWeather = "Light Rain";
@@ -44,7 +44,7 @@ public class stationAnalytics {
         break;
       case 700:
         reading.latestWeather = "Snow";
-        reading.latestWeatherIcon = "fa-solid fa-cloud-snow";
+        reading.latestWeatherIcon = "fa-solid fa-snowflake";
         break;
       case 800:
         reading.latestWeather = "Thunder";
@@ -64,6 +64,7 @@ public class stationAnalytics {
         break;
     }
   }
+
   public static String getWindDirection(double windDirectionDegrees) {
     String windDirection = "";
     if ((windDirectionDegrees <= 11.25) || (windDirectionDegrees >= 348.75)) {
@@ -101,9 +102,11 @@ public class stationAnalytics {
     }
     return windDirection;
   }
+
   public static double getWindChill(double temperature, double windSpeed) {
-    return util.unitConversions.rounder((13.12 + (0.6215*temperature) - (11.37*Math.pow(windSpeed, 0.16)) + (0.3965*temperature*(Math.pow(windSpeed, 0.16)))));
+    return util.unitConversions.rounder((13.12 + (0.6215 * temperature) - (11.37 * Math.pow(windSpeed, 0.16)) + (0.3965 * temperature * (Math.pow(windSpeed, 0.16)))));
   }
+
   public static void setMinMaxValues(long id) {
     Station station = Station.findById(id);
     Reading firstReading = station.readings.get(0);
@@ -120,6 +123,21 @@ public class stationAnalytics {
       if (reading.windSpeed < station.minWindSpeed) station.minWindSpeed = reading.windSpeed;
       if (reading.pressure > station.maxPressure) station.maxPressure = reading.pressure;
       if (reading.pressure < station.minPressure) station.minPressure = reading.pressure;
+    }
+  }
+
+  public static void computeLatestStats(Long id, Station station) {
+    if (station.readings.isEmpty()) {
+      station.latestReading = new Reading();
+    } else {
+      station.latestReading = getLatestReading(station.readings);
+      station.latestTemperatureFahrenheit = unitConversions.celsiusToFahrenheit(station.latestReading.temperature);
+      station.latestWindSpeedBeaufort = unitConversions.windSpeedToBeaufort(station.latestReading.windSpeed);
+      long latestReadingId = station.latestReading.id;
+      stationAnalytics.getWeather(latestReadingId);
+      station.latestWindDirectionString = getWindDirection(station.latestReading.windDirection);
+      station.latestWindChill = getWindChill(station.latestReading.temperature, station.latestReading.windSpeed);
+      setMinMaxValues(id);
     }
   }
 }
