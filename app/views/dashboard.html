@@ -5,17 +5,22 @@
 
 #{list items:stations, as:'station'}
 <div class="content box">
-  <h1 class="title">
-    ${station.name}
-  </h1>
-  <p>
-    <a href="/station/${station.id}">
+    <h1 class="title">
+        ${station.name}
+    </h1>
+    <p>
+        <a href="/station/${station.id}">
         <span class="icon has-text-info is-large">
-          <i class="fa-solid fa-folder-open fa-lg" ></i>
-<!--is-large makes the container class large; fa-lg makes the icon itself large -->
+          <i class="fa-solid fa-folder-open fa-lg"></i>
+            <!--is-large makes the container class large; fa-lg makes the icon itself large -->
         </span>
-    </a>
-  </p>
+        </a>
+        <a href="/dashboard/deletestation/${station.id}">
+          <span class="icon has-text-danger is-large">
+              <i class="fa-solid fa-trash-can fa-lg"></i>
+          </span>
+        </a>
+    </p>
 </div>
 #{/list}
 #{addstation /}

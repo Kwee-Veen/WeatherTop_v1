@@ -6,6 +6,7 @@
 GET     /                                       Start.index
 GET     /dashboard                              Dashboard.index
 POST    /dashboard/addstation                   Dashboard.addStation
+GET     /dashboard/deletestation/{id}    Dashboard.deleteStation
 GET     /about                                  About.index
 GET     /station/{id}                           StationController.index
 POST    /stations/{id}/addreading               StationController.addReading

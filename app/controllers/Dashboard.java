@@ -23,5 +23,14 @@ public class Dashboard extends Controller {
     station.save();
     redirect("/dashboard");
   }
+  public static void deleteStation(Long id){
+    Member member = Accounts.getLoggedInMember();
+    Station station = Station.findById(id);
+    member.stations.remove(station);
+    member.save();
+    station.delete();
+    Logger.info("Deleting station " + station.name + " from member " + member.email);
+    redirect("/dashboard");
+  }
 }
 

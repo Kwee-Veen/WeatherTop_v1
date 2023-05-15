@@ -60,7 +60,7 @@ public class stationAnalytics {
         break;
       default:
         reading.latestWeather = "No Weather Data";
-        reading.latestWeatherIcon = "fa-solid fa-binary-slash";
+        reading.latestWeatherIcon = "fa-solid fa-circle-xmark";
         break;
     }
   }
@@ -129,6 +129,7 @@ public class stationAnalytics {
   public static void computeLatestStats(Long id, Station station) {
     if (station.readings.isEmpty()) {
       station.latestReading = new Reading();
+      station.latestReading.latestWeatherIcon = "fa-solid fa-circle-xmark";
     } else {
       station.latestReading = getLatestReading(station.readings);
       station.latestTemperatureFahrenheit = unitConversions.celsiusToFahrenheit(station.latestReading.temperature);
