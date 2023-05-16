@@ -7,6 +7,7 @@
       <th>Wind Speed (km/h)</th>
       <th>Wind Direction (°)</th>
       <th>Pressure (hPa)</th>
+      <th>Delete Reading</th>
     </tr>
   </thead>
   <tbody>
@@ -31,7 +32,11 @@
         ${reading.pressure}
       </td>
       <td>
-        <a href="/station/${_station.id}/deletereading/${reading.id}" class="button is-danger">Delete Reading</a>
+        <a href="/station/${_station.id}/deletereading/${reading.id}">
+          <span class="icon has-text-danger">
+            <i class="fa-solid fa-trash-can"></i>
+          </span>
+        </a>
       </td>
     </tr>
   #{/list}

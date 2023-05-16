@@ -5,21 +5,169 @@
 
 #{list items:stations, as:'station'}
 <div class="content box">
-    <h1 class="title">
-        ${station.name}
-    </h1>
+    <div class="columns">
+        <div class="column">
+            <div class="box has-background-black has-text-white">
+                <div class="columns">
+                    <div class="column">
+                        <h4 class="has-text-white">
+                            ${station.name} <br>
+                        </h4>
+                        <p>
+                            ${station.latitude}° N<br>
+                            ${station.longitude}° W
+                        </p>
+                    </div>
+                    <div class="column is-3">
+                    <span class="icon has-background location">
+                        <i class="fa-solid fa-location-crosshairs"></i>
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="box has-background-black has-text-white">
+                <div class="columns">
+                    <div class="column">
+                        <h4 class="has-text-white">
+                            Weather
+                        </h4>
+                        <p>
+                            ${station.latestReading.latestWeather}
+                        </p>
+                    </div>
+                    <div class="column is-3">
+                    <span class="icon has-background weather">
+                        <i class='${station.latestReading.latestWeatherIcon}'></i>
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="box has-background-black has-text-white">
+                <div class="columns">
+                    <div class="column">
+                        <h4 class="has-text-white">
+                            Temperature
+                        </h4>
+                        <p>
+                            ${station.latestReading.temperature}°C<br>
+                            ${station.latestTemperatureFahrenheit}°F<br>
+                        </p>
+                        <p>
+                            Max: ${station.maxTemp}°C<br>
+                            Min: ${station.minTemp}°C
+                        </p>
+                    </div>
+                    <div class="column is-3">
+                        <div class="columns is-multiline">
+                            <div class="column">
+                            <span class="icon has-background temperature">
+                                <i class="fa-solid fa-temperature-low"></i>
+                            </span>
+                            </div>
+                            <div class="column">
+                            </div>
+                            <div class="column">
+                            <span class="icon temperature">
+                                <i class='${station.temperatureTrendIcon}'></i>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="box has-background-black has-text-white">
+                <div class="columns">
+                    <div class="column">
+                        <h4 class="has-text-white">
+                            Wind
+                        </h4>
+                        <p>
+                            ${station.latestWindSpeedBeaufort} Bft<br>${station.latestWindDirectionString}<br>
+                            Feels like: ${station.latestWindChill} °C
+                        </p>
+                        <p>
+                            Max: ${station.maxWindSpeed} km/h <br>
+                            Min: ${station.minWindSpeed} km/h
+                        </p>
+                    </div>
+                    <div class="column is-3">
+                        <div class="columns is-multiline">
+                            <div class="column">
+                            <span class="icon has-background wind">
+                                <i class="fa-solid fa-wind"></i>
+                            </span>
+                            </div>
+                            <div class="column">
+                            </div>
+                            <div class="column">
+                            <span class="icon wind">
+                                <i class='${station.windTrendIcon}'></i>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="column">
+            <div class="box has-background-black has-text-white">
+                <div class="columns">
+                    <div class="column">
+                        <h4 class="has-text-white">
+                            Pressure
+                        </h4>
+                        <p>
+                            ${station.latestReading.pressure} hPa
+                        </p>
+                        <p>
+                            Max: ${station.maxPressure} hPa <br>
+                            Min: ${station.minPressure} hPa
+                        </p>
+                    </div>
+                    <div class="column is-3">
+                        <div class="columns is-multiline">
+                            <div class="column">
+                            <span class="icon has-background pressure">
+                                <i class="fa-solid fa-weight-scale"></i>
+                            </span>
+                            </div>
+                            <div class="column">
+                            </div>
+                            <div class="column">
+                            <span class="icon pressure">
+                                <i class='${station.pressureTrendIcon}'></i>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <p>
-        <a href="/station/${station.id}">
-        <span class="icon has-text-info is-large">
-          <i class="fa-solid fa-folder-open fa-lg"></i>
-            <!--is-large makes the container class large; fa-lg makes the icon itself large -->
-        </span>
-        </a>
-        <a href="/dashboard/deletestation/${station.id}">
-          <span class="icon has-text-danger is-large">
-              <i class="fa-solid fa-trash-can fa-lg"></i>
-          </span>
-        </a>
+        <div class="columns">
+            <div class="column is-1">
+                <a href="/station/${station.id}">
+                    <span class="icon has-text-info">
+                        <i class="fa-solid fa-folder-open"></i>
+                    </span>
+                </a>
+            </div>
+            <div class="column is-1">
+                <a href="/dashboard/deletestation/${station.id}">
+                    <span class="icon has-text-danger">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
     </p>
 </div>
 #{/list}

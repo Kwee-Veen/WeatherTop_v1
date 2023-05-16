@@ -3,9 +3,6 @@ package util;
 import models.Reading;
 import models.Station;
 
-import javax.persistence.CascadeType;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
 import java.util.List;
 
 public class stationAnalytics {
@@ -147,18 +144,18 @@ public class stationAnalytics {
   }
 
   public static void checkTrends(Station station) {
+    String positiveTrend = "fa-solid fa-arrow-up";
+    String negativeTrend = "fa-solid fa-arrow-down";
     Reading[] readings = new Reading[3];
     readings[0] = station.readings.get(0);
     readings[1] = station.readings.get(0);
     readings[2] = station.readings.get(0);
+
     for (Reading reading : station.readings) {
       readings[0] = readings[1];
       readings[1] = readings[2];
       readings[2] = reading;
     }
-    String positiveTrend = "fa-solid fa-arrow-up";
-    String negativeTrend = "fa-solid fa-arrow-down";
-    String noTrend = "fa-solid fa-arrows-up-down";
 
     if ((readings[0].temperature < readings[1].temperature) && (readings[1].temperature < readings[2].temperature))
       station.temperatureTrendIcon = positiveTrend;
