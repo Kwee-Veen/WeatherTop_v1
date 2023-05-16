@@ -18,13 +18,16 @@ public class Station extends Model
     public double maxWindSpeed;
     public double minPressure;
     public double maxPressure;
-    public double latestTemperatureFahrenheit = 0;
-    public int latestWindSpeedBeaufort = 0;
-    public String latestWindDirectionString ="";
-    public double latestWindChill = 0;
     @OneToMany(cascade = CascadeType.ALL)
     public List<Reading> readings = new ArrayList<Reading>();
     public Reading latestReading;
+    public double latestTemperatureFahrenheit = 0;
+    public int latestWindSpeedBeaufort = 0;
+    public String latestWindDirectionString = "";
+    public double latestWindChill = 0;
+    public String temperatureTrendIcon = "";
+    public String windTrendIcon = "";
+    public String pressureTrendIcon = "";
     public Station(String name, double latitude, double longitude)
     {
         this.name = name;

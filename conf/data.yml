@@ -1,24 +1,24 @@
 Reading(r1):
   dateAndTime: 2023/05/16 11:05:12
   code: 200
-  temperature: 41
+  temperature: 44.0
   windSpeed: 10.56
-  windDirection: 10
-  pressure: 1002.0
+  windDirection: 19.6
+  pressure: 1006.5
 Reading(r2):
   dateAndTime: 2023/05/16 11:20:32
   code: 300
-  temperature: 29
-  windSpeed: 9.22
+  temperature: 42.9
+  windSpeed: 14.22
   windDirection: 20
-  pressure: 1004.0
+  pressure: 1004.2
 Reading(r3):
   dateAndTime: 2023/05/16 12:09:01
   code: 200
-  temperature: 43
-  windSpeed: 8.98
+  temperature: 41.1
+  windSpeed: 18.98
   windDirection: 25
-  pressure: 1006.0
+  pressure: 1003.6
 Reading(r4):
   dateAndTime: 2023/05/15 15:40:25
   code: 400

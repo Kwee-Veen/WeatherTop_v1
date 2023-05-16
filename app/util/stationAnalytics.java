@@ -3,6 +3,9 @@ package util;
 import models.Reading;
 import models.Station;
 
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 public class stationAnalytics {
@@ -107,6 +110,23 @@ public class stationAnalytics {
     return util.unitConversions.rounder((13.12 + (0.6215 * temperature) - (11.37 * Math.pow(windSpeed, 0.16)) + (0.3965 * temperature * (Math.pow(windSpeed, 0.16)))));
   }
 
+  public static void computeLatestStats(Long id, Station station) {
+    if (station.readings.isEmpty()) {
+      station.latestReading = new Reading();
+      station.latestReading.latestWeatherIcon = "fa-solid fa-circle-xmark";
+    } else {
+      station.latestReading = getLatestReading(station.readings);
+      station.latestTemperatureFahrenheit = unitConversions.celsiusToFahrenheit(station.latestReading.temperature);
+      station.latestWindSpeedBeaufort = unitConversions.windSpeedToBeaufort(station.latestReading.windSpeed);
+      long latestReadingId = station.latestReading.id;
+      stationAnalytics.getWeather(latestReadingId);
+      station.latestWindDirectionString = getWindDirection(station.latestReading.windDirection);
+      station.latestWindChill = getWindChill(station.latestReading.temperature, station.latestReading.windSpeed);
+      setMinMaxValues(id);
+      checkTrends(station);
+    }
+  }
+
   public static void setMinMaxValues(long id) {
     Station station = Station.findById(id);
     Reading firstReading = station.readings.get(0);
@@ -126,19 +146,33 @@ public class stationAnalytics {
     }
   }
 
-  public static void computeLatestStats(Long id, Station station) {
-    if (station.readings.isEmpty()) {
-      station.latestReading = new Reading();
-      station.latestReading.latestWeatherIcon = "fa-solid fa-circle-xmark";
-    } else {
-      station.latestReading = getLatestReading(station.readings);
-      station.latestTemperatureFahrenheit = unitConversions.celsiusToFahrenheit(station.latestReading.temperature);
-      station.latestWindSpeedBeaufort = unitConversions.windSpeedToBeaufort(station.latestReading.windSpeed);
-      long latestReadingId = station.latestReading.id;
-      stationAnalytics.getWeather(latestReadingId);
-      station.latestWindDirectionString = getWindDirection(station.latestReading.windDirection);
-      station.latestWindChill = getWindChill(station.latestReading.temperature, station.latestReading.windSpeed);
-      setMinMaxValues(id);
+  public static void checkTrends(Station station) {
+    Reading[] readings = new Reading[3];
+    readings[0] = station.readings.get(0);
+    readings[1] = station.readings.get(0);
+    readings[2] = station.readings.get(0);
+    for (Reading reading : station.readings) {
+      readings[0] = readings[1];
+      readings[1] = readings[2];
+      readings[2] = reading;
     }
+    String positiveTrend = "fa-solid fa-arrow-up";
+    String negativeTrend = "fa-solid fa-arrow-down";
+    String noTrend = "fa-solid fa-arrows-up-down";
+
+    if ((readings[0].temperature < readings[1].temperature) && (readings[1].temperature < readings[2].temperature))
+      station.temperatureTrendIcon = positiveTrend;
+    else if ((readings[0].temperature > readings[1].temperature) && (readings[1].temperature > readings[2].temperature))
+      station.temperatureTrendIcon = negativeTrend;
+
+    if ((readings[0].windSpeed < readings[1].windSpeed) && (readings[1].windSpeed < readings[2].windSpeed))
+      station.windTrendIcon = positiveTrend;
+    else if ((readings[0].windSpeed > readings[1].windSpeed) && (readings[1].windSpeed > readings[2].windSpeed))
+      station.windTrendIcon = negativeTrend;
+
+    if ((readings[0].pressure < readings[1].pressure) && (readings[1].pressure < readings[2].pressure))
+      station.pressureTrendIcon = positiveTrend;
+    else if ((readings[0].pressure > readings[1].pressure) && (readings[1].pressure > readings[2].pressure))
+      station.pressureTrendIcon = negativeTrend;
   }
 }
