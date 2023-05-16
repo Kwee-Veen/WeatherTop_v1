@@ -33,4 +33,3 @@ public class Dashboard extends Controller {
     redirect("/dashboard");
   }
 }
-

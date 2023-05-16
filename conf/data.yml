@@ -1,70 +1,82 @@
 Reading(r1):
+  dateAndTime: 2023/05/16 11:05:12
   code: 200
   temperature: 41
   windSpeed: 10.56
   windDirection: 10
   pressure: 1002.0
 Reading(r2):
+  dateAndTime: 2023/05/16 11:20:32
   code: 300
   temperature: 29
   windSpeed: 9.22
   windDirection: 20
   pressure: 1004.0
 Reading(r3):
+  dateAndTime: 2023/05/16 12:09:01
   code: 200
   temperature: 43
   windSpeed: 8.98
   windDirection: 25
   pressure: 1006.0
 Reading(r4):
+  dateAndTime: 2023/05/15 15:40:25
   code: 400
   temperature: 25.0
   windSpeed: 8.12
   windDirection: 142
   pressure: 1000.0
 Reading(r5):
+  dateAndTime: 2023/05/15 16:10:25
   code: 600
   temperature: 21.0
   windSpeed: 10.54
   windDirection: 136
   pressure: 998.0
 Reading(r6):
+  dateAndTime: 2023/05/15 16:40:25
   code: 500
   temperature: 26.0
   windSpeed: 11.03
   windDirection: 128
   pressure: 1004.0
 Reading(r7):
+    dateAndTime: 2019/02/28 19:30:30
     code: 100
     temperature: -96.9
     windSpeed: 1.45
     windDirection: 255
     pressure: 0.85
 Reading(r8):
+  dateAndTime: 2019/03/01 19:29:59
   code: 900
   temperature: -9.1
   windSpeed: 2.38
   windDirection: 260
   pressure: 0.85
 Reading(r9):
+  dateAndTime: 2019/03/02 19:31:02
   code: 900
   temperature: -21
   windSpeed: 6.79
   windDirection: 255
   pressure: 0.84
 Reading(r10):
+  dateAndTime: 2023/05/12 04:30:00
   code: 100
   temperature: -82
   windSpeed: 11.25
   windDirection: 110
   pressure: 0.84
 Reading(r11):
+  dateAndTime: 2023/05/12 14:30:00
   code: 900
   temperature: -26
   windSpeed: 16.47
   windDirection: 105
   pressure: 0.85
 Reading(r12):
+  dateAndTime: 2023/05/13 04:30:00
   code: 1000
   temperature: -80
   windSpeed: 57.11

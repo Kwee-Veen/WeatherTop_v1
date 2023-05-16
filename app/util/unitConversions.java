@@ -1,5 +1,7 @@
 package util;
 
+import java.time.LocalDateTime;
+
 public class unitConversions {
   public static double celsiusToFahrenheit(double celsius) {
     return rounder((((celsius * 9) / 5) + 32));
@@ -36,5 +38,15 @@ public class unitConversions {
   public static double rounder(double input) {
     double longValue = (double)Math.round(input*100);
     return longValue / 100;
+  }
+  public static String dateAndTimeGenerator() {
+    LocalDateTime now = LocalDateTime.now();
+    int year = now.getYear();
+    int month = now.getMonthValue();
+    int day = now.getDayOfMonth();
+    int hr = now.getHour();
+    int min = now.getMinute();
+    int sec = now.getSecond();
+    return (year + "/" + String.format("%02d", month) + "/" + String.format("%02d", day) + " " + String.format("%02d", hr) + ":" + String.format("%02d", min) + ":" + String.format("%02d", sec));
   }
 }

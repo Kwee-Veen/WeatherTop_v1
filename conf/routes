@@ -3,7 +3,8 @@
 # ~~~~
 
 # Home page
-GET     /                                       Start.index
+GET     /                                       Accounts.login
+GET     /start                                  Start.index
 GET     /dashboard                              Dashboard.index
 POST    /dashboard/addstation                   Dashboard.addStation
 GET     /dashboard/deletestation/{id}    Dashboard.deleteStation
