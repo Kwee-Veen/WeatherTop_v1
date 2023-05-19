@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import models.Member;
@@ -12,8 +14,8 @@ public class Dashboard extends Controller {
   public static void index() {
     Member member = Accounts.getLoggedInMember();
     List<Station> stations = member.stations;
+    Collections.sort(stations, Comparator.comparing(s -> s.name));
     Logger.info("Rendering Dashboard");
-
     if (member.stations != null) {
       for (Station station : stations) {
         stationAnalytics.computeLatestStats(station.id, station);

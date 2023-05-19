@@ -44,4 +44,19 @@ public class Accounts extends Controller {
     }
     return member;
   }
+  public static void accountDetails() {
+    Logger.info("Rendering Account Details");
+    Member member = Accounts.getLoggedInMember();
+    render("accountdetails.html", member);
+  }
+  public static void modifyAccount(String firstname, String surname, String email, String password) {
+    Member member = Accounts.getLoggedInMember();
+    Logger.info("Modifying account " + member.email + " to " + email);
+    member.firstname = firstname;
+    member.surname = surname;
+    member.email = email;
+    member.password = password;
+    member.save();
+    redirect("/accountdetails");
+  }
 }

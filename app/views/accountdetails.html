@@ -1,0 +1,76 @@
+#{extends 'main.html' /}
+#{set title:'Modify Account' /}
+#{menu id:"modifyaccount"/}
+
+<section class="content box">
+    <div class="columns">
+        <div class="column is-6">
+            <form action="/modifyaccount" method="POST">
+                <h2 class="subtitle is-underlined">
+                    Current Account Details:
+                </h2>
+                <div class="columns is-multiline">
+                    <div class="column is-2">
+                        First Name:
+                    </div>
+                    <div class="column is-4">
+                        ${member.firstname}
+                    </div>
+                    <div class="column is-2">
+                        Surname:
+                    </div>
+                    <div class="column is-4">
+                        ${member.surname}
+                    </div>
+                    <div class="column is-2">
+                        Email:
+                    </div>
+                    <div class="column is-4">
+                        ${member.email}
+                    </div>
+                    <div class="column is-2">
+                        Password:
+                    </div>
+                    <div class="column is-4">
+                        ${member.password}
+                    </div>
+                </div>
+                <h2 class="subtitle is-underlined">
+                    Modify Account Details:
+                </h2>
+                <div class="field is-horizontal field-body">
+                    <div class="field">
+                        <label class="label is-medium">First Name</label>
+                        <p class="control is-expanded">
+                            <input class="input" type="text" placeholder="John" name="firstname">
+                        </p>
+                    </div>
+                    <div class="field">
+                        <label class="label is-medium">Surname</label>
+                        <p class="control">
+                            <input class="input" type="text" placeholder="Smith" name="surname">
+                        </p>
+                    </div>
+                </div>
+                <div class="field is-horizontal field-body">
+                    <div class="field">
+                        <label class="label is-medium">Email</label>
+                        <input class="input" placeholder="test@test.com" name="email">
+                    </div>
+                    <div class="field">
+                        <label class="label is-medium">Password</label>
+                        <input class="input" placeholder="test" type="password" name="password">
+                    </div>
+                </div>
+                <br>
+                <button class="button is-link is-info">Modify</button>
+            </form>
+        </div>
+        <div class="column is-6">
+            <figure class="image is-square">
+                <img src="../../public/images/weather1.jpg"
+                     alt="Sunset reflected off a lake with a small island of trees">
+            </figure>
+        </div>
+    </div>
+</section>
