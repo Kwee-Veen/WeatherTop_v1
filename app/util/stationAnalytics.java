@@ -68,37 +68,37 @@ public class stationAnalytics {
   public static String getWindDirection(double windDirectionDegrees) {
     String windDirection = "";
     if ((windDirectionDegrees <= 11.25) || (windDirectionDegrees >= 348.75)) {
-      windDirection = "North";
+      windDirection = "N";
     } else if (windDirectionDegrees <= 33.75) {
-      windDirection = "North-North-East";
+      windDirection = "NNE";
     } else if (windDirectionDegrees <= 56.25) {
-      windDirection = "North-East";
+      windDirection = "NE";
     } else if (windDirectionDegrees <= 78.75) {
-      windDirection = "East-North-East";
+      windDirection = "ENE";
     } else if (windDirectionDegrees <= 101.25) {
-      windDirection = "East";
+      windDirection = "E";
     } else if (windDirectionDegrees <= 123.75) {
-      windDirection = "East-South-East";
+      windDirection = "ESE";
     } else if (windDirectionDegrees <= 146.25) {
-      windDirection = "South-East";
+      windDirection = "SE";
     } else if (windDirectionDegrees <= 168.75) {
-      windDirection = "South-South-East";
+      windDirection = "SSE";
     } else if (windDirectionDegrees <= 191.25) {
-      windDirection = "South";
+      windDirection = "S";
     } else if (windDirectionDegrees <= 213.75) {
-      windDirection = "South-South-West";
+      windDirection = "SSW";
     } else if (windDirectionDegrees <= 236.25) {
-      windDirection = "South-West";
+      windDirection = "SW";
     } else if (windDirectionDegrees <= 258.75) {
-      windDirection = "West-South-West";
+      windDirection = "WSW";
     } else if (windDirectionDegrees <= 281.25) {
-      windDirection = "West";
+      windDirection = "W";
     } else if (windDirectionDegrees <= 303.75) {
-      windDirection = "West-North-West";
+      windDirection = "WNW";
     } else if (windDirectionDegrees <= 326.25) {
-      windDirection = "North-West";
+      windDirection = "NW";
     } else if (windDirectionDegrees <= 348.75) {
-      windDirection = "North-North-West";
+      windDirection = "NNW";
     }
     return windDirection;
   }

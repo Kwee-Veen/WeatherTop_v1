@@ -1,41 +1,47 @@
 <form action="/stations/${_station.id}/addreading" method="POST">
-    <div class="columns">
-        <div class="field column">
-            <label class="label">Weather Code</label>
-            <div class="control">
-                <input class="input" placeholder="100 - 800" type="text" name="code">
-            </div>
-        </div>
-        <div class="field column">
-            <label class="label">Temperature</label>
-            <div class="control">
-                <input class="input" placeholder="°C" type="text" name="temperature">
-            </div>
-        </div>
-        <div class="field column">
-            <label class="label">Wind Speed</label>
-            <div class="control">
-                <input class="input" placeholder="km/h" type="text" name="windSpeed">
-            </div>
-        </div>
-        <div class="field column">
-            <label class="label">Wind Direction</label>
-            <div class="control">
-                <input class="input" placeholder="0 - 360°" type="text" name="windDirection">
-            </div>
-        </div>
-        <div class="field column">
-            <label class="label">Pressure</label>
-            <div class="control">
-                <input class="input" placeholder="hPa" type="text" name="pressure">
-            </div>
-        </div>
-        <p></p>
-        <div class="field mt-4">
-            <br>
-            <div class="control">
-                <button class="button is-warning">Add Reading</button>
-            </div>
-        </div>
+  <div class="columns">
+    <div class="column">
     </div>
+    <div class="field column has-text-centered">
+      <label class="label">Weather Code</label>
+      <div class="control">
+        <input class="input" placeholder="100 - 800" type="text" name="code">
+      </div>
+    </div>
+    <div class="field column has-text-centered">
+      <label class="label">Temperature</label>
+      <div class="control">
+        <input class="input" placeholder="°C" type="text" name="temperature">
+      </div>
+    </div>
+    <div class="field column has-text-centered">
+      <label class="label">Wind Speed</label>
+      <div class="control">
+        <input class="input" placeholder="km/h" type="text" name="windSpeed">
+      </div>
+    </div>
+    <div class="field column has-text-centered">
+      <label class="label">Wind Direction</label>
+      <div class="control">
+        <input class="input" placeholder="0 - 360°" type="text" name="windDirection">
+      </div>
+    </div>
+    <div class="field column has-text-centered">
+      <label class="label">Pressure</label>
+      <div class="control">
+        <input class="input" placeholder="hPa" type="text" name="pressure">
+      </div>
+    </div>
+    <div class="column">
+    </div>
+  </div>
+  <div class="columns is-centered">
+    <div class="column is-narrow">
+      <div class="field mt-4">
+        <div class="control">
+          <button class="button is-warning">Add Reading</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </form>

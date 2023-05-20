@@ -1,31 +1,39 @@
 <form action="/dashboard/addstation" method="POST">
-    <div class="columns">
-        <div class="column">
-            <div class ="field">
-                <label class="label">Title</label>
-                <div class ="control">
-                    <input class="input" placeholder="Station Name" type="text" name="name">
-                </div>
-            </div>
-        </div>
-        <div class="column">
-            <div class ="field">
-                <label class="label">Latitude</label>
-                <div class ="control">
-                    <input class="input" placeholder="Between 90.00 and -90.00" type="text" name="latitude">
-                </div>
-            </div>
-        </div>
-        <div class="column">
-            <div class ="field">
-                <label class="label">Longitude</label>
-                <div class ="control">
-                    <input class="input" placeholder="Between 180.00 and -180.00" type="text" name="longitude">
-                </div>
-            </div>
-        </div>
+  <div class="columns">
+    <div class="column is-2">
     </div>
-    <div class="field mt-4">
+    <div class="column has-text-centered">
+      <div class="field">
+        <label class="label">Title</label>
+        <div class="control">
+          <input class="input" placeholder="Station Name" type="text" name="name">
+        </div>
+      </div>
+    </div>
+    <div class="column has-text-centered">
+      <div class="field">
+        <label class="label">Latitude</label>
+        <div class="control">
+          <input class="input" placeholder="Between 90.00 and -90.00" type="text" name="latitude">
+        </div>
+      </div>
+    </div>
+    <div class="column has-text-centered">
+      <div class="field">
+        <label class="label">Longitude</label>
+        <div class="control">
+          <input class="input" placeholder="Between 180.00 and -180.00" type="text" name="longitude">
+        </div>
+      </div>
+    </div>
+    <div class="column is-2">
+    </div>
+  </div>
+  <div class="columns is-centered">
+    <div class="column is-narrow">
+      <div class="field mt-4">
         <button class="button is-warning">Add Station</button>
+      </div>
     </div>
+  </div>
 </form>
