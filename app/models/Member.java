@@ -23,9 +23,12 @@ public class Member extends Model {
     this.email = email;
     this.password = password;
   }
+
   public static Member findByEmail(String email) {
     return find("email", email).first();
   }
-  public boolean checkPassword (String password) {
-    return this.password.equals(password);}
+
+  public boolean checkPassword(String password) {
+    return this.password.equals(password);
+  }
 }

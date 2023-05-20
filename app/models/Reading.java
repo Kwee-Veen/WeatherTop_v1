@@ -13,9 +13,7 @@ public class Reading extends Model {
   public double windSpeed;
   public double windDirection;
   public double pressure;
-  public String dateAndTime ="";
-  public String latestWeather = "";
-  public String latestWeatherIcon = "";
+  public String dateAndTime = "";
 
   public Reading(int code, double temperature, double windSpeed, double windDirection, double pressure) {
     this.dateAndTime = dateAndTimeGenerator();

@@ -17,12 +17,11 @@ public class Dashboard extends Controller {
     Collections.sort(stations, Comparator.comparing(s -> s.name));
     Logger.info("Rendering Dashboard");
     if (member.stations != null) {
-      for (Station station : stations) {
-        stationAnalytics.computeLatestStats(station.id, station);
-      }
+      stationAnalytics.computeLatestStats();
       render("dashboard.html", stations);
     } else render("dashboard.html");
   }
+
 
   public static void addStation(String name, double latitude, double longitude) {
     Member member = Accounts.getLoggedInMember();

@@ -1,86 +1,86 @@
 Reading(r1):
   dateAndTime: 2023/05/16 11:05:12
   code: 200
-  temperature: 44.0
+  temperature: 44.05
   windSpeed: 10.56
-  windDirection: 19.6
-  pressure: 1006.5
+  windDirection: 19.66
+  pressure: 1006.51
 Reading(r2):
   dateAndTime: 2023/05/16 11:20:32
   code: 300
-  temperature: 42.9
+  temperature: 42.93
   windSpeed: 14.22
-  windDirection: 20
-  pressure: 1004.2
+  windDirection: 20.09
+  pressure: 1004.22
 Reading(r3):
   dateAndTime: 2023/05/16 12:09:01
   code: 200
-  temperature: 41.1
+  temperature: 41.11
   windSpeed: 18.98
-  windDirection: 25
-  pressure: 1003.6
+  windDirection: 25.08
+  pressure: 1003.63
 Reading(r4):
   dateAndTime: 2023/05/15 15:40:25
   code: 400
-  temperature: 25.0
+  temperature: 25.05
   windSpeed: 8.12
-  windDirection: 142
-  pressure: 1000.0
+  windDirection: 142.11
+  pressure: 1000.02
 Reading(r5):
   dateAndTime: 2023/05/15 16:10:25
   code: 600
-  temperature: 21.0
+  temperature: 21.09
   windSpeed: 10.54
-  windDirection: 136
-  pressure: 998.0
+  windDirection: 136.31
+  pressure: 998.01
 Reading(r6):
   dateAndTime: 2023/05/15 16:40:25
   code: 500
-  temperature: 26.0
+  temperature: 26.07
   windSpeed: 11.03
-  windDirection: 128
+  windDirection: 128.81
   pressure: 1004.0
 Reading(r7):
     dateAndTime: 2019/02/28 19:30:30
     code: 100
-    temperature: -96.9
+    temperature: -96.93
     windSpeed: 1.45
-    windDirection: 255
+    windDirection: 255.11
     pressure: 0.85
 Reading(r8):
   dateAndTime: 2019/03/01 19:29:59
   code: 900
-  temperature: -9.1
+  temperature: -9.18
   windSpeed: 2.38
-  windDirection: 260
+  windDirection: 260.14
   pressure: 0.85
 Reading(r9):
   dateAndTime: 2019/03/02 19:31:02
   code: 900
-  temperature: -21
+  temperature: -21.87
   windSpeed: 6.79
-  windDirection: 255
+  windDirection: 255.81
   pressure: 0.84
 Reading(r10):
   dateAndTime: 2023/05/12 04:30:00
   code: 100
-  temperature: -82
+  temperature: -82.55
   windSpeed: 11.25
-  windDirection: 110
+  windDirection: 110.73
   pressure: 0.84
 Reading(r11):
   dateAndTime: 2023/05/12 14:30:00
   code: 900
-  temperature: -26
+  temperature: -26.92
   windSpeed: 16.47
-  windDirection: 105
+  windDirection: 105.77
   pressure: 0.85
 Reading(r12):
   dateAndTime: 2023/05/13 04:30:00
   code: 1000
-  temperature: -80
+  temperature: -80.95
   windSpeed: 57.11
-  windDirection: 100
+  windDirection: 100.54
   pressure: 0.84
 
 Station(s1):

@@ -1,66 +1,68 @@
 package util;
 
+import controllers.Accounts;
+import models.Member;
 import models.Reading;
 import models.Station;
 
 import java.util.List;
 
 public class stationAnalytics {
-  public static Reading getLatestReading(List<Reading> inputReading) {
-    Reading latestReading = inputReading.get(0);
-    for (Reading reading : inputReading) {
+  public static Reading getLatestReading(List<Reading> inputReadingList) {
+    Reading latestReading = inputReadingList.get(0);
+    for (Reading reading : inputReadingList) {
       latestReading = reading;
     }
     return latestReading;
   }
 
   public static void getWeather(long id) {
-    Reading reading = Reading.findById(id);
-    int code = reading.code;
+    Station station = Station.findById(id);
+    int code = station.latestReading.code;
     switch (code) {
       case 100:
-        reading.latestWeather = "Clear";
-        reading.latestWeatherIcon = "fa-solid fa-sun";
+        station.latestWeather = "Clear";
+        station.latestWeatherIcon = "fa-solid fa-sun";
         break;
       case 200:
-        reading.latestWeather = "Partial Clouds";
-        reading.latestWeatherIcon = "fa-solid fa-cloud-sun";
+        station.latestWeather = "Partial Clouds";
+        station.latestWeatherIcon = "fa-solid fa-cloud-sun";
         break;
       case 300:
-        reading.latestWeather = "Cloudy";
-        reading.latestWeatherIcon = "fa-solid fa-cloud";
+        station.latestWeather = "Cloudy";
+        station.latestWeatherIcon = "fa-solid fa-cloud";
         break;
       case 400:
-        reading.latestWeather = "Light Rain";
-        reading.latestWeatherIcon = "fa-solid fa-cloud-sun-rain";
+        station.latestWeather = "Light Rain";
+        station.latestWeatherIcon = "fa-solid fa-cloud-sun-rain";
         break;
       case 500:
-        reading.latestWeather = "Heavy Shower";
-        reading.latestWeatherIcon = "fa-solid fa-cloud-showers-heavy";
+        station.latestWeather = "Heavy Shower";
+        station.latestWeatherIcon = "fa-solid fa-cloud-showers-heavy";
         break;
       case 600:
-        reading.latestWeather = "Rain";
-        reading.latestWeatherIcon = "fa-solid fa-cloud-rain";
+        station.latestWeather = "Rain";
+        station.latestWeatherIcon = "fa-solid fa-cloud-rain";
         break;
       case 700:
-        reading.latestWeather = "Snow";
-        reading.latestWeatherIcon = "fa-solid fa-snowflake";
+        station.latestWeather = "Snow";
+        station.latestWeatherIcon = "fa-solid fa-snowflake";
         break;
       case 800:
-        reading.latestWeather = "Thunder";
-        reading.latestWeatherIcon = "fa-solid fa-cloud-bolt";
+        station.latestWeather = "Thunder";
+        station.latestWeatherIcon = "fa-solid fa-cloud-bolt";
         break;
       case 900:
-        reading.latestWeather = "Martian Cloud";
-        reading.latestWeatherIcon = "fa-solid fa-cloud-moon";
+        station.latestWeather = "Martian Cloud";
+        station.latestWeatherIcon = "fa-solid fa-cloud-moon";
         break;
       case 1000:
-        reading.latestWeather = "Martian Dust Storm";
-        reading.latestWeatherIcon = "fa-solid fa-tornado";
+        station.latestWeather = "Martian Dust Storm";
+        station.latestWeatherIcon = "fa-solid fa-tornado";
         break;
       default:
-        reading.latestWeather = "No Weather Data";
-        reading.latestWeatherIcon = "fa-solid fa-circle-xmark";
+        station.latestWeather = "No Weather Data";
+        station.latestWeatherIcon = "fa-solid fa-circle-xmark";
         break;
     }
   }
@@ -107,20 +109,23 @@ public class stationAnalytics {
     return util.unitConversions.rounder((13.12 + (0.6215 * temperature) - (11.37 * Math.pow(windSpeed, 0.16)) + (0.3965 * temperature * (Math.pow(windSpeed, 0.16)))));
   }
 
-  public static void computeLatestStats(Long id, Station station) {
-    if (station.readings.isEmpty()) {
-      station.latestReading = new Reading();
-      station.latestReading.latestWeatherIcon = "fa-solid fa-circle-xmark";
-    } else {
-      station.latestReading = getLatestReading(station.readings);
-      station.latestTemperatureFahrenheit = unitConversions.celsiusToFahrenheit(station.latestReading.temperature);
-      station.latestWindSpeedBeaufort = unitConversions.windSpeedToBeaufort(station.latestReading.windSpeed);
-      long latestReadingId = station.latestReading.id;
-      stationAnalytics.getWeather(latestReadingId);
-      station.latestWindDirectionString = getWindDirection(station.latestReading.windDirection);
-      station.latestWindChill = getWindChill(station.latestReading.temperature, station.latestReading.windSpeed);
-      setMinMaxValues(id);
-      checkTrends(station);
+  public static void computeLatestStats() {
+    Member member = Accounts.getLoggedInMember();
+    List<Station> stations = member.stations;
+    for (Station station : stations) {
+      if (station.readings.isEmpty()) {
+        station.latestReading = new Reading();
+        station.latestWeatherIcon = "fa-solid fa-circle-xmark";
+      } else {
+        station.latestReading = getLatestReading(station.readings);
+        station.latestTemperatureFahrenheit = unitConversions.celsiusToFahrenheit(station.latestReading.temperature);
+        station.latestWindSpeedBeaufort = unitConversions.windSpeedToBeaufort(station.latestReading.windSpeed);
+        getWeather(station.id);
+        station.latestWindDirectionString = getWindDirection(station.latestReading.windDirection);
+        station.latestWindChill = getWindChill(station.latestReading.temperature, station.latestReading.windSpeed);
+        setMinMaxValues(station.id);
+        checkTrends(station);
+      }
     }
   }
 
@@ -147,10 +152,8 @@ public class stationAnalytics {
     String positiveTrend = "fa-solid fa-arrow-up";
     String negativeTrend = "fa-solid fa-arrow-down";
     Reading[] readings = new Reading[3];
-    readings[0] = station.readings.get(0);
-    readings[1] = station.readings.get(0);
-    readings[2] = station.readings.get(0);
-
+    for (int i = 0; i < readings.length; i++)
+      readings[i] = station.readings.get(0);
     for (Reading reading : station.readings) {
       readings[0] = readings[1];
       readings[1] = readings[2];

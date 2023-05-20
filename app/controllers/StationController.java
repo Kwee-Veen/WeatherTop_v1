@@ -10,7 +10,7 @@ public class StationController extends Controller {
   public static void index(long id) {
     Station station = Station.findById(id);
     Logger.info("Rendering station " + station.name);
-    stationAnalytics.computeLatestStats(id, station);
+    stationAnalytics.computeLatestStats();
     render("station.html", station);
   }
 
@@ -29,7 +29,7 @@ public class StationController extends Controller {
     station.readings.remove(reading);
     station.save();
     reading.delete();
-    stationAnalytics.computeLatestStats(id, station);
+    stationAnalytics.computeLatestStats();
     Logger.info("Deleting reading " + reading.id + " from station " + station.name);
     render("station.html", station);
   }

@@ -6,6 +6,7 @@ public class unitConversions {
   public static double celsiusToFahrenheit(double celsius) {
     return rounder((((celsius * 9) / 5) + 32));
   }
+
   public static int windSpeedToBeaufort(double windSpeed) {
     int beaufort = 0;
     if (windSpeed < 1) {
@@ -35,10 +36,12 @@ public class unitConversions {
     }
     return beaufort;
   }
+
   public static double rounder(double input) {
-    double longValue = (double)Math.round(input*100);
+    double longValue = (double) Math.round(input * 100);
     return longValue / 100;
   }
+
   public static String dateAndTimeGenerator() {
     LocalDateTime now = LocalDateTime.now();
     int year = now.getYear();
