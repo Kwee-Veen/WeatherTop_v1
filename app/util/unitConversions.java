@@ -3,10 +3,18 @@ package util;
 import java.time.LocalDateTime;
 
 public class unitConversions {
+
+  /**
+   * celciusToFahrenheit takes a temperature double parameter in Celsius and converts it to Fahrenheit.
+   * The returned Fahrenheit value is a double, rounded to two decimal places via the rounder method.
+   */
   public static double celsiusToFahrenheit(double celsius) {
     return rounder((((celsius * 9) / 5) + 32));
   }
 
+  /**
+   * windSpeedToBeaufort takes a wind speed double parameter in km/h, converts it to Beaufort, and returns it as an int.
+   */
   public static int windSpeedToBeaufort(double windSpeed) {
     int beaufort = 0;
     if (windSpeed < 1) {
@@ -37,11 +45,21 @@ public class unitConversions {
     return beaufort;
   }
 
+  /**
+   * The rounder method takes a double and returns it as a double rounded to two decimal places.
+   */
   public static double rounder(double input) {
     double longValue = (double) Math.round(input * 100);
     return longValue / 100;
   }
 
+  /**
+   * The dateAndTimeGenerator method generates a date and time without decimal places, in the format desired.
+   * It accesses the current time via the java.time package's LocalDateTime.now() method.
+   * ints are then extracted for year, month, day, hour, minute and second via the LocalDateTime.now().get methods.
+   * A String is constructed and returned combining these int values.
+   * The String.format("%02d", x) method ensures that integers below 10 have a leading zero added for consistency.
+   */
   public static String dateAndTimeGenerator() {
     LocalDateTime now = LocalDateTime.now();
     int year = now.getYear();

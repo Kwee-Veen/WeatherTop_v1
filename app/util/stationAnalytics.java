@@ -8,6 +8,10 @@ import models.Station;
 import java.util.List;
 
 public class stationAnalytics {
+
+  /**
+   * getLatestReading takes an ArrayList of Readings and returns the most recent Reading from that list.
+   */
   public static Reading getLatestReading(List<Reading> inputReadingList) {
     Reading latestReading = inputReadingList.get(0);
     for (Reading reading : inputReadingList) {
@@ -16,6 +20,13 @@ public class stationAnalytics {
     return latestReading;
   }
 
+  /**
+   * getWeather accesses a Station via the id parameter.
+   * It sets that Station's latestWeather and latestWeatherIcon fields depending on the code field of that Station's latest Reading.
+   * The latestWeatherIcon String corresponds with a FontAwesome icon of the appropriate weather.
+   * If no case is met, default latestWeather and latestWeatherIcon values are assigned, indicating no weather found.
+   * As this method sets the values of multiple fields, it does not have a return type, instead accessing fields directly.
+   */
   public static void getWeather(long id) {
     Station station = Station.findById(id);
     int code = station.latestReading.code;
@@ -61,15 +72,20 @@ public class stationAnalytics {
         station.latestWeatherIcon = "fa-solid fa-tornado";
         break;
       default:
-        station.latestWeather = "No Weather Data";
+        station.latestWeather = "No Weather Found";
         station.latestWeatherIcon = "fa-solid fa-circle-xmark";
         break;
     }
   }
 
+  /**
+   * getWindDirection takes a double corresponding with a Reading's windDirectionDegrees field.
+   * It returns a String corresponding with one of 16 directions within a 360 degree range.
+   * If degrees are outside the 360 range, a blank String is returned.
+   */
   public static String getWindDirection(double windDirectionDegrees) {
     String windDirection = "";
-    if ((windDirectionDegrees <= 11.25) || (windDirectionDegrees >= 348.75)) {
+    if (((windDirectionDegrees <= 11.25) && (windDirectionDegrees >= 0)) || ((windDirectionDegrees >= 348.75) && (windDirectionDegrees <= 360))) {
       windDirection = "N";
     } else if (windDirectionDegrees <= 33.75) {
       windDirection = "NNE";
@@ -105,17 +121,29 @@ public class stationAnalytics {
     return windDirection;
   }
 
+  /**
+   * getWindChill takes temperature and wind speed double parameters to calculate wind chill.
+   * Wind chill is returned as a double, and rounded to two decimal places via the rounder util method.
+   */
   public static double getWindChill(double temperature, double windSpeed) {
     return util.unitConversions.rounder((13.12 + (0.6215 * temperature) - (11.37 * Math.pow(windSpeed, 0.16)) + (0.3965 * temperature * (Math.pow(windSpeed, 0.16)))));
   }
 
+  /**
+   * computeLatestStats sets the values of all 'latest-' fields for each Station belonging to the currently logged in Member.
+   * If the Station has no Readings, a blank Reading is generated for that Station using the Reading() constructor without arguments,
+   * and getWeather assigns default latestWeather and latestWeatherIcon values for that station.
+   * If the Station has Readings, the Station's 'latest-' fields, trends, and min-max values are computed through 8 util methods
+   * using the Station's Readings and its latest Reading.
+   * As this is computed data, it is not saved. Instead, the data is re-computed each time it is required, to avoid stale data.
+   */
   public static void computeLatestStats() {
     Member member = Accounts.getLoggedInMember();
     List<Station> stations = member.stations;
     for (Station station : stations) {
       if (station.readings.isEmpty()) {
         station.latestReading = new Reading();
-        station.latestWeatherIcon = "fa-solid fa-circle-xmark";
+        getWeather(station.id);
       } else {
         station.latestReading = getLatestReading(station.readings);
         station.latestTemperatureFahrenheit = unitConversions.celsiusToFahrenheit(station.latestReading.temperature);
@@ -124,11 +152,18 @@ public class stationAnalytics {
         station.latestWindDirectionString = getWindDirection(station.latestReading.windDirection);
         station.latestWindChill = getWindChill(station.latestReading.temperature, station.latestReading.windSpeed);
         setMinMaxValues(station.id);
-        checkTrends(station);
+        checkTrends(station.id);
       }
     }
   }
 
+  /**
+   * setMinMaxValues accesses a Station via the id parameter, and sets the station's min and max values for
+   * the temperature, wind speed & pressure fields to that of the Station's first Reading.
+   * It then checks each Reading in the Station against these initial values, changing the Station's min or max
+   * values for each of these fields if lesser or larger values are encountered, respectively.
+   * As this method sets the values of multiple fields, it does not have a return type, instead accessing fields directly.
+   */
   public static void setMinMaxValues(long id) {
     Station station = Station.findById(id);
     Reading firstReading = station.readings.get(0);
@@ -148,7 +183,15 @@ public class stationAnalytics {
     }
   }
 
-  public static void checkTrends(Station station) {
+  /**
+   * checkTrends accesses a Station via the id parameter, and checks for trends in all the temperature, wind speed
+   * & pressure fields of all readings in that station. When a trend is detected, a String corresponding with
+   * a FontAwesome icon trend arrow is stored as temperatureTrendIcon, windTrendIcon or pressureTrendIcon.
+   * These variables can be called on the front end as an icon's class to display that trend icon.
+   * As this method sets the values of multiple fields, it does not have a return type, instead accessing fields directly.
+   */
+  public static void checkTrends(long id) {
+    Station station = Station.findById(id);
     String positiveTrend = "fa-solid fa-arrow-up";
     String negativeTrend = "fa-solid fa-arrow-down";
     Reading[] readings = new Reading[3];
